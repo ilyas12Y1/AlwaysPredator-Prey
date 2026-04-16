@@ -106,9 +106,9 @@ function startGamewith(type) {
 createWorld();
 
 
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ILYASJEU.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 io.on('connection', (socket) => {
@@ -202,7 +202,7 @@ setInterval(() => {
   });
 }, 100);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
     console.log("Serveur lancé sur " + PORT);
